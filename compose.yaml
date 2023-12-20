@@ -1,4 +1,28 @@
 services:
+  nextapp:
+    container_name: nextapp
+    image: aejkatappaja/nextapp:latest
+    build:
+      context: ./frontend
+      dockerfile: next.dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8080
+    depends_on:
+      - rustapp
+  rustapp:
+    container_name: rustapp
+    image: aejkatappaja/rustapp:latest
+    build:
+      context: ./backend
+      dockerfile: rust.dockerfile
+      args:
+        DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
   db:
     container_name: db
     image: postgres:13
@@ -14,3 +38,6 @@ services:
 volumes:
   pgdata: {}
 # docker compose up -d to launch
+# docker compose build
+# docker compose up -d rustapp
+# docker exec -it db psql -U postgres
