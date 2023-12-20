@@ -1,6 +1,5 @@
 use postgres::Error as PostgresError;
 use postgres::{Client, NoTls};
-use std::env;
 use std::io::{Read, Write};
 use std::net::{TcpListener, TcpStream};
 
@@ -16,13 +15,15 @@ struct User {
 }
 
 //DATABASE URL
-const DB_URL: &str = env!("DATABASE_URL");
+const DB_URL: &str = "postgres://postgres:postgres@db:5432/postgres";
 
 //constants
 const OK_RESPONSE: &str =
     "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Methods: GET, POST, PUT, DELETE\r\nAccess-Control-Allow-Headers: Content-Type\r\n\r\n";
 const NOT_FOUND: &str = "HTTP/1.1 404 NOT FOUND\r\n\r\n";
 const INTERNAL_ERROR: &str = "HTTP/1.1 500 INTERNAL ERROR\r\n\r\n";
+
+mod utils;
 
 //main function
 fn main() {
@@ -123,6 +124,19 @@ fn handle_post_request(request: &str) -> (String, String) {
 
             let user_id: i32 = row.get(0);
 
+            if user.name.is_empty() || user.email.is_empty() {
+                return (
+                    INTERNAL_ERROR.to_string(),
+                    "Name and email cannot be empty".to_string(),
+                );
+            }
+
+            if !utils::email_validation::is_valid_email(&user.email) {
+                return (
+                    INTERNAL_ERROR.to_string(),
+                    "Invalid email format".to_string(),
+                );
+            }
             // Fetch the created user data
             match client.query_one(
                 "SELECT id, name, email FROM users WHERE id = $1",
