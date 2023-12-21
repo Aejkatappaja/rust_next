@@ -1,22 +1,13 @@
-import { ImageLink } from '../components/ImageLink';
+import { ILink } from '@/definitions';
+import { createLink } from './create-link';
+import { strings } from './strings';
 
-export const links = [
-  {
-    alt: 'rust-crab-logo',
-    href: 'https://www.rust-lang.org/',
-    src: '/images/rust_crab.png',
-    color: 'orange-500',
-  },
-  {
-    alt: 'nextjs-logo',
-    href: 'https://nextjs.org/',
-    src: '/images/next_js.webp',
-    color: 'violet-500',
-  },
-  {
-    alt: 'https://www.docker.com/',
-    href: 'https://www.rust-lang.org/',
-    src: '/images/docker.jpg',
-    color: 'blue-400',
-  },
+const {
+  links: { rust, nextjs, docker },
+} = strings;
+
+export const links: ILink[] = [
+  createLink(rust.name, rust.alt, rust.href, rust.src),
+  createLink(nextjs.name, nextjs.alt, nextjs.href, nextjs.src),
+  createLink(docker.name, docker.alt, docker.href, docker.src),
 ];
