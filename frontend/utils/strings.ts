@@ -1,5 +1,8 @@
 export const strings = {
   main_title: 'RUST CRUD',
+  users: {
+    title: 'Users List',
+  },
   links: {
     rust: {
       name: 'rust',
