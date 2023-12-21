@@ -20,6 +20,10 @@
   @apply bg-gradient-to-r from-fuchsia-500 to-orange-500 bg-clip-text text-transparent;
 }
 
+.bg-rainbow {
+  @apply bg-gradient-to-r  from-fuchsia-500 to-orange-500;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
