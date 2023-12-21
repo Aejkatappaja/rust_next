@@ -15,7 +15,8 @@ struct User {
 }
 
 //DATABASE URL
-const DB_URL: &str = "postgres://postgres:postgres@db:5432/postgres";
+// const DB_URL: &str = "postgres://postgres:postgres@db:5432/postgres";
+const DB_URL: &str = env!("DATABASE_URL");
 
 //constants
 const OK_RESPONSE: &str =
