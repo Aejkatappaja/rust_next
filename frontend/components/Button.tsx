@@ -9,7 +9,7 @@ interface ButtonProps {
   id: number;
 }
 
-export const Button: React.FC<ButtonProps> = ({ id }) => {
+export const DeleteUserButton: React.FC<ButtonProps> = ({ id }) => {
   const router = useRouter();
 
   const handleDeleteUser = async (id: number) => {
