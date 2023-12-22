@@ -1,5 +1,5 @@
 export const strings = {
-  main_title: 'RUST CRUD',
+  main_title: '🦀 RUST CRUD 🦀',
   users: {
     title: 'Users List',
   },
