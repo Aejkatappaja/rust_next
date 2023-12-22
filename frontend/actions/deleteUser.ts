@@ -5,9 +5,18 @@ export default async function deleteUser(
     const res = await fetch(`http://localhost:8080/api/rust/users/${id}`, {
       method: 'DELETE',
     });
-    const response = await res.json();
-    return response;
+    console.log(res);
+
+    if (res.ok) {
+      return 'User deleted successfully';
+    } else {
+      console.error(
+        `Error deleting user. Server responded with status ${res.status}`
+      );
+      return undefined;
+    }
   } catch (error: unknown) {
-    console.error(error);
+    console.error('Error deleting user:', error);
+    return undefined;
   }
 }
