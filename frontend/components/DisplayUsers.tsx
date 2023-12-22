@@ -1,5 +1,5 @@
 import getUsers from '@/actions/getUsers';
-import { Button } from './Button';
+import { DeleteUserButton } from './Button';
 import Image from 'next/image';
 
 export default async function DisplayUsers() {
@@ -19,7 +19,7 @@ export default async function DisplayUsers() {
                   <strong className='rounded-full border-2 border-orange-500 bg-orange-500/30  px-2 text-orange-100 shadow-lg shadow-black'>
                     {id}
                   </strong>
-                  <Button id={id} />
+                  <DeleteUserButton id={id} />
                 </div>
                 <Image
                   src='/images/user_placeholder.png'
