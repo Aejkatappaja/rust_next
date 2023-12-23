@@ -1,6 +1,7 @@
 import getUsers from '@/actions/getUsers';
 import { DeleteUserButton } from './Button';
 import Image from 'next/image';
+import { GiCrossedClaws } from 'react-icons/gi';
 
 export default async function DisplayUsers() {
   const data = await getUsers();
@@ -19,7 +20,9 @@ export default async function DisplayUsers() {
                   <strong className='rounded-full border-2 border-orange-500 bg-orange-500/30  px-2 text-orange-100 shadow-lg shadow-black'>
                     {id}
                   </strong>
-                  <DeleteUserButton id={id} />
+                  <DeleteUserButton id={id}>
+                    <GiCrossedClaws className=' rounded-full text-orange-600' />
+                  </DeleteUserButton>
                 </div>
                 <Image
                   src='/images/user_placeholder.png'

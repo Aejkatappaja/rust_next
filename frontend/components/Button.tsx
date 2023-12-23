@@ -2,10 +2,8 @@
 
 import deleteUser from '@/actions/deleteUser';
 import { useRouter } from 'next/navigation';
-import React from 'react';
-import { GiCrossedClaws } from 'react-icons/gi';
 
-interface ButtonProps {
+interface ButtonProps extends React.PropsWithChildren {
   id: number;
 }
 
@@ -22,9 +20,5 @@ export const DeleteUserButton: React.FC<ButtonProps> = ({ id }) => {
     }
   };
 
-  return (
-    <button className='' onClick={() => handleDeleteUser(id)}>
-      <GiCrossedClaws className=' rounded-full text-orange-600' />
-    </button>
-  );
+  return <button className='' onClick={() => handleDeleteUser(id)}></button>;
 };
